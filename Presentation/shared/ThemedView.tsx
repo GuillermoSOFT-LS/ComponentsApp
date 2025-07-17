@@ -9,7 +9,7 @@ interface Props extends ViewProps {
     bgColor?: string;
 }
 
-const ThemedText = ({style, className,margin = false,safe = false,bgColor,children}: Props) => {
+const ThemedView = ({style, className,margin = false,safe = false,bgColor,children}: Props) => {
 
     const backgroundColor = useThemeColor({}, 'background')
 
@@ -27,4 +27,4 @@ const ThemedText = ({style, className,margin = false,safe = false,bgColor,childr
         </View>
     );
 };
-export default ThemedText;
+export default ThemedView;

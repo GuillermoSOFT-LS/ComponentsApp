@@ -2,7 +2,6 @@ import {View} from 'react-native';
 import {animationMenuRoutes, menuRoutes, uiMenuRoutes} from "@/constants/Routes";
 import ThemedView from "@/Presentation/shared/ThemedView";
 import MenuItem from "@/Presentation/menu/MenuItem";
-import {className} from "postcss-selector-parser";
 
 const ComponentsApp = () => {
   return (
