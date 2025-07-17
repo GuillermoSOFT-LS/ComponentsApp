@@ -2,7 +2,7 @@
 const {Colors} = require("./constants/Colors");
 module.exports = {
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
-  content: ["./app", "./componenst/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app", "./Presentation/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {

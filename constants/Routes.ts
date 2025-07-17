@@ -1,4 +1,3 @@
-import {IOSConfig} from "@expo/config-plugins";
 import {Ionicons} from "@expo/vector-icons";
 
 interface MenuRoutes {

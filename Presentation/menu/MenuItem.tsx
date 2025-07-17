@@ -13,14 +13,15 @@ interface Props {
     isLast: boolean;
 }
 
+
 const MenuItem = ({title,name,icon, isFirst =false, isLast = false}:Props)=> {
 
-        const [routeName] = name.split('/')
+    const [routeName] = name.split('/')
     const primaryColor = useThemeColor({}, 'primary')
 
     return (
        <Pressable
-         className='bg-white dark:bg-black px-5 py-2'
+         className='flex flex-row bg-white dark:bg-black/15 px-5 py-2'
          onPress={()=> router.push(routeName as Href)}
          style={{
              ...(isFirst && {
@@ -36,12 +37,10 @@ const MenuItem = ({title,name,icon, isFirst =false, isLast = false}:Props)=> {
              })
          }}
        >
-
            <View className='flex-row items-center'>
                <Ionicons name={icon} size={30} color={primaryColor} className="mr-5" />
                <ThemeText type='h2'>{title}</ThemeText>
            </View>
-
        </Pressable>
     )
 }

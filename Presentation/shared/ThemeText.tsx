@@ -2,10 +2,10 @@ import {Text, TextProps} from "react-native";
 
 interface props extends TextProps {
     className?: string;
-    type?: 'normal' | 'semi-bold' | 'h1' | 'h2' | 'link'
+    type?: 'normal' | 'h1' | 'h2' | 'semi-bold' | 'link';
 }
 
-const ThemeText = ({className,type, children,...rest}:props)=> {
+const ThemeText = ({className,type,...rest}:props)=> {
     return (
         <Text
         className={[
@@ -16,7 +16,7 @@ const ThemeText = ({className,type, children,...rest}:props)=> {
             type === 'h2' ? 'text-xl' : undefined,
             type === 'link' ? 'font-normal underline' : undefined,
             className,
-        ].join(' ')} >{children}</Text>
+        ].join(' ')} {...rest}/>
     )
 }
 
