@@ -17,6 +17,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { allRoutes } from '@/constants/Routes';
 
 import '../global.css';
+import {SafeAreaProvider} from "react-native-safe-area-context";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,39 +40,42 @@ export default function RootLayout() {
   }
 
   return (
-      <GestureHandlerRootView
-          style={{ backgroundColor: backgroundColor, flex: 1 }}
-      >
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack
-              screenOptions={{
-                  headerShadowVisible: false,
-                contentStyle: {
-                  backgroundColor: backgroundColor,
-                },
-                headerStyle: {
-                  backgroundColor: backgroundColor,
-                },
-              }}
+      <SafeAreaProvider>
+          <GestureHandlerRootView
+              style={{ backgroundColor: backgroundColor, flex: 1 }}
           >
-            <Stack.Screen
-                name="index"
-                options={{
-                  title: 'Home',
-                }}
-            />
+              <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+                  <Stack
+                      screenOptions={{
+                          headerShadowVisible: false,
+                          contentStyle: {
+                              backgroundColor: backgroundColor,
+                          },
+                          headerStyle: {
+                              backgroundColor: backgroundColor,
+                          },
+                      }}
+                  >
+                      <Stack.Screen
+                          name="index"
+                          options={{
+                              title: 'Home',
+                          }}
+                      />
 
-            {allRoutes.map((route) => (
-                <Stack.Screen
-                    key={route.name}
-                    name={route.name}
-                    options={{
-                      title: route.title,
-                    }}
-                />
-            ))}
-          </Stack>
-        </ThemeProvider>
-      </GestureHandlerRootView>
+                      {allRoutes.map((route) => (
+                          <Stack.Screen
+                              key={route.name}
+                              name={route.name}
+                              options={{
+                                  title: route.title,
+                              }}
+                          />
+                      ))}
+                  </Stack>
+              </ThemeProvider>
+          </GestureHandlerRootView>
+      </SafeAreaProvider>
+
   );
 }
