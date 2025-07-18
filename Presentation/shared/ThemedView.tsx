@@ -6,16 +6,17 @@ interface Props extends ViewProps {
     className?: string;
     margin?: boolean;
     safe?:boolean;
-    bgColor?: string;
+    bgColor?: boolean;
 }
 
-const ThemedView = ({style, className,margin = false,safe = false,bgColor,children}: Props) => {
+const ThemedView = ({style, className,margin = false,safe = false,children}: Props) => {
 
     const backgroundColor = useThemeColor({}, 'background')
 
     const safeArea = useSafeAreaInsets()
 
     return (
+
         <View style={[{
             backgroundColor: backgroundColor,
             flex: 1,
