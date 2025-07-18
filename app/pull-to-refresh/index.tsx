@@ -12,12 +12,19 @@ const PullToRefreshScreen = () => {
 
         setTimeout(()=> {
             setisRefreshing(false)
-        },4000)
+        },3000)
     }
 
   return (
     <ScrollView
-    refreshControl={<RefreshControl refreshing={isrefreshing} onRefresh={onRefreshFun} />}>
+    refreshControl={
+        <RefreshControl
+            refreshing={isrefreshing}
+            onRefresh={onRefreshFun}
+            colors={['red','blue','green']}
+            progressBackgroundColor={'white'}
+        />}>
+
         <ThemedView margin>
             <ThemeText>PullToRefreshScreen</ThemeText>
         </ThemedView>
