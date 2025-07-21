@@ -18,6 +18,7 @@ import { allRoutes } from '@/constants/Routes';
 
 import '../global.css';
 import {SafeAreaProvider} from "react-native-safe-area-context";
+import {ThemeChangerProvider} from "@/Presentation/context/ThemeChangerContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -44,7 +45,8 @@ export default function RootLayout() {
           <GestureHandlerRootView
               style={{ backgroundColor: backgroundColor, flex: 1 }}
           >
-              <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+
+              <ThemeChangerProvider>
                   <Stack
                       screenOptions={{
                           headerShadowVisible: false,
@@ -69,11 +71,13 @@ export default function RootLayout() {
                               name={route.name}
                               options={{
                                   title: route.title,
+                                  headerShown: !route.title.includes('Slide'),
                               }}
                           />
                       ))}
                   </Stack>
-              </ThemeProvider>
+              </ThemeChangerProvider>
+
           </GestureHandlerRootView>
       </SafeAreaProvider>
 

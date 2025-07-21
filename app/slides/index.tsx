@@ -99,6 +99,9 @@ const SlidesScreen = () => {
         </ThemedView>
     );
 };
+
+
+
 export default SlidesScreen;
 
 interface SlideItemProps {
@@ -120,8 +123,9 @@ const SlideItem = ({ item }: SlideItemProps) => {
                     width: width * 0.7,
                     height: width * 0.7,
                     resizeMode: 'center',
-                    alignSelf: 'center',
+                    alignSelf: 'center' ,
                 }}
+
             />
 
             <ThemeText

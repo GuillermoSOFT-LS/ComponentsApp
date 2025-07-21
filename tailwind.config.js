@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const {Colors} = require("./constants/Colors");
 module.exports = {
+  darkMode: 'class',
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
   content: ["./app", "./Presentation/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
