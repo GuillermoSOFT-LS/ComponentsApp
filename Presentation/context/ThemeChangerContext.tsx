@@ -1,6 +1,7 @@
-import {createContext, PropsWithChildren, useContext, useState} from "react";
+import {createContext, PropsWithChildren, useContext, useEffect, useState} from "react";
 import {ThemeProvider,DarkTheme,DefaultTheme} from "@react-navigation/native";
 import {useColorScheme} from "nativewind";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface ThemeChangerContextType {
     currentTheme: 'light' | 'dark'
@@ -32,8 +33,20 @@ export const  ThemeChangerProvider = ({children}:PropsWithChildren) => {
     const [isSystemThemeEnabled, setIsSystemThemeEnabled] = useState(true)
 
     const currentTheme = isSystemThemeEnabled
-    ? colorScheme
-        :(isDarkMode) ? 'dark' : 'light'
+        ? colorScheme
+        :(isDarkMode)
+        ? 'dark'
+        : 'light'
+
+    useEffect(()=> {
+        AsyncStorage.getItem('selected-theme').then((theme) => {
+            if (!theme) return;
+
+            setIsDarkMode(theme === 'dark')
+            setIsSystemThemeEnabled(theme === 'system')
+            setColorScheme(theme as 'light' | 'dark' | 'system');
+        })
+    },[])
 
     return(
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -46,10 +59,13 @@ export const  ThemeChangerProvider = ({children}:PropsWithChildren) => {
                         setColorScheme(isDarkMode ? 'light' : 'dark')
                         setIsSystemThemeEnabled(false)
                         // Todo: Guardar en el storage
+
+                        await AsyncStorage.setItem('selected-theme', isDarkMode ? 'light' : 'dark')
                     },
                     setSystemTheme: async()=> {
                         setIsSystemThemeEnabled(true)
                         setColorScheme('system')
+                        await AsyncStorage.setItem('selected-theme', 'system')
                     }
                 }}>
                 {children}
